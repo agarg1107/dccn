@@ -1,0 +1,82 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void func(string s, bool manchester)
+{
+    char ch=manchester?'0':'1';
+    string s1="", s2="", s3="";
+    int n=s.length();
+    for(int i=0; i<n; i++)
+    {
+        if(s[i]==ch)
+        {
+            if(i<(n-1) && s[i]==s[i+1])
+            {
+                s1+=("_   ");
+                s2+=(".|.|");
+                s3+=(" |_|");
+            }
+            else
+            {
+                s1+=("_  ");
+                s2+=(".|.");
+                s3+=(" |_");
+            }
+        }
+        else
+        {
+            if(i<(n-1) && s[i]==s[i+1])
+            {
+                s1+=("  _ ");
+                s2+=(".|.|");
+                s3+=("_| |");
+            }
+            else
+            {
+                s1+=("  _");
+                s2+=(".|.");
+                s3+=("_| ");
+            }
+        }
+    }
+    cout<<s1<<"\n";
+    cout<<s2<<"\n";
+    cout<<s3<<"\n";
+}
+
+int main()
+{
+    string s;
+    cin>>s;
+    int n=s.length();
+    string ans="";
+    char ch=s[0];
+    for(int i=0; i<n; i++)
+    {
+        if(s[i]=='1')
+        {
+            if(ch=='1')
+            {
+                ch='0';
+                ans.push_back(ch);
+            }
+            else
+            {
+                ch='1';
+                ans.push_back(ch);
+            }
+        }
+        else
+        {
+            ans.push_back(ch);
+        }
+    }
+    ans.push_back(ch);
+    bool manchester=true;
+    func(s, manchester);
+    cout<<"\n"<<"\n";
+    bool Diffmanchester=false;
+    func(ans, Diffmanchester);
+    
+    return 0;
+}
